@@ -1,5 +1,17 @@
 <p id="notice"><%= notice %></p>
 
+<%= form_with(model: @flight, method: "get") do |f| %>
+  <%= f.label :date, "Date:" %>
+  <%= f.datetime_select :date %><br />
+  <%= f.label :departuring_airport_id, "Departuring Airport: " %>
+  <%= f.collection_select :departuring_airport_id, Airport.all, :id, :name %>
+  <%= f.label :arriving_airport_id, "Arriving Airport: " %>
+  <%= f.collection_select :arriving_airport_id, Airport.all, :id, :name %> <br/>
+  <%= f.label :passengers, "Amount of passengers: " %>
+  <%= f.select :passengers, [1, 2, 3, 4] %> <br/>
+  <%= f.submit "Search" %>
+<% end %>
+
 <h1>Flights</h1>
 
 <table>
