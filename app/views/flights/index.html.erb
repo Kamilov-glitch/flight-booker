@@ -2,11 +2,11 @@
 
 <%= form_with(model: @flight, method: "get") do |f| %>
   <%= f.label :date, "Date:" %>
-  <%= f.datetime_select :date %><br />
-  <%= f.label :departuring_airport_id, "Departuring Airport: " %>
-  <%= f.collection_select :departuring_airport_id, Airport.all, :id, :name %>
-  <%= f.label :arriving_airport_id, "Arriving Airport: " %>
-  <%= f.collection_select :arriving_airport_id, Airport.all, :id, :name %> <br/>
+  <%= select_tag "date", options_for_select(Flight.get_flight_dates) %><br />
+  <%= f.label :departure_airport_id, "Departuring Airport: " %>
+  <%= f.collection_select :departure_airport_id, Airport.all, :id, :name %>
+  <%= f.label :arrival_airport_id, "Arriving Airport: " %>
+  <%= f.collection_select :arrival_airport_id, Airport.all, :id, :name %> <br/>
   <%= f.label :passengers, "Amount of passengers: " %>
   <%= f.select :passengers, [1, 2, 3, 4] %> <br/>
   <%= f.submit "Search" %>
