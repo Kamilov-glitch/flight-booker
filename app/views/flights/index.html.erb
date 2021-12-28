@@ -1,22 +1,45 @@
 <p id="notice"><%= notice %></p>
 
-<%= form_with(model: @flight, method: "get") do |f| %>
-  <%= f.label :date, "Date:" %>
-  <%= select_tag "date", options_for_select(Flight.get_flight_dates) %><br />
-  <%= f.label :departure_airport_id, "Departuring Airport: " %>
-  <%= f.collection_select :departure_airport_id, Airport.all, :id, :name %>
-  <%= f.label :arrival_airport_id, "Arriving Airport: " %>
-  <%= f.collection_select :arrival_airport_id, Airport.all, :id, :name %> <br/>
-  <%= f.label :passengers, "Amount of passengers: " %>
-  <%= f.select :passengers, [1, 2, 3, 4] %> <br/>
-  <%= f.submit "Search" %>
+<%# <%= form_with(model: @flight, method: "get") do |f| %>
+  <%# <%= f.label :date, "Date:" %>
+  <%# <%= select_tag "date", options_for_select(Flight.get_flight_dates), include_blank: true %><br />
+  <%# <%= f.label :departure_airport_id, "Departuring Airport: " %>
+  <%# <%= f.collection_select :departure_airport_id, Airport.all, :id, :name, include_blank: true %>
+  <%# <%= f.label :arrival_airport_id, "Arriving Airport: " %>
+  <%# <%= f.collection_select :arrival_airport_id, Airport.all, :id, :name, include_blank: true %> <br/>
+  <%# <%= f.label :passengers, "Amount of passengers: " %>
+  <%# <%= f.select :passengers, [1, 2, 3, 4] <br/> %>
+  <%# <%= f.submit "Search" %>
+<%# <% end %>
+
+<%= form_tag(flights_path, method: "get") do %>
+  <select name=flight[:departure_airport_id], class="form-control">
+    <option value="None">-Select-</option>
+    <option value="1">NYC</option>
+    <option value="2">GYD</option>
+    <option value="3">IST</option>
+    <option value="4">SFO</option>
+  </select>
+  <input type="submit" value="Search">
+
 <% end %>
+
+<p>
+  <% if @chosen_flights %> 
+    <% @chosen_flights.each do |cf| %>
+      <%= cf.date %>
+    <% end %>
+  <% end %> 
+</p>
 
 <h1>Flights</h1>
 
 <table>
   <thead>
     <tr>
+      <th>Departure Airport</th>
+      <th>Arrival Airport</th>
+      <th>Date</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -24,9 +47,9 @@
   <tbody>
     <% @flights.each do |flight| %>
       <tr>
-        <td><%= link_to 'Show', flight %></td>
-        <td><%= link_to 'Edit', edit_flight_path(flight) %></td>
-        <td><%= link_to 'Destroy', flight, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= flight.departure_airport.name %></td>
+        <td><%= flight.arrival_airport.name %></td>
+        <td><%= flight.date %></td>
       </tr>
     <% end %>
   </tbody>

@@ -6,4 +6,16 @@ class Flight < ApplicationRecord
         self.all.map { |a| a.date }
     end
 
+    def self.search(search)
+        if search
+            flights = Flight.all
+            flights = Flight.where(departure_airport_id: search[:":departure_airport_id"][","])
+            # flights = Flight.where(arrival_airport_id: search[:":arrival_airport_id"][","])
+            # flights = Flight.where(date: search[:":date"][","])
+            return flights
+        else
+            Flight.all
+        end
+    end
+
 end
