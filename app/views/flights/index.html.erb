@@ -1,28 +1,28 @@
 <p id="notice"><%= notice %></p>
 
-<%# <%= form_with(model: @flight, method: "get") do |f| %>
-  <%# <%= f.label :date, "Date:" %>
-  <%# <%= select_tag "date", options_for_select(Flight.get_flight_dates), include_blank: true %><br />
-  <%# <%= f.label :departure_airport_id, "Departuring Airport: " %>
-  <%# <%= f.collection_select :departure_airport_id, Airport.all, :id, :name, include_blank: true %>
-  <%# <%= f.label :arrival_airport_id, "Arriving Airport: " %>
-  <%# <%= f.collection_select :arrival_airport_id, Airport.all, :id, :name, include_blank: true %> <br/>
+<%= form_with(model: @flight, method: "get") do |f| %>
+  <%# <%= f.label :date, "Date:" %> 
+  <%# <%= select_tag "date", options_for_select(Flight.get_flight_dates), include_blank: true<br /> eleve f onde %> %>
+  <%= f.label :departure_airport_id, "Departuring Airport: " %>
+  <%= f.collection_select :departure_airport_id, Airport.all, :id, :name, include_blank: true %>
+  <%= f.label :arrival_airport_id, "Arriving Airport: " %>
+  <%= f.collection_select :arrival_airport_id, Airport.all, :id, :name, include_blank: true %> <br/>
   <%# <%= f.label :passengers, "Amount of passengers: " %>
-  <%# <%= f.select :passengers, [1, 2, 3, 4] <br/> %>
-  <%# <%= f.submit "Search" %>
-<%# <% end %>
-
-<%= form_tag(flights_path, method: "get") do %>
-  <select name=flight[:departure_airport_id], class="form-control">
-    <option value="None">-Select-</option>
-    <option value="1">NYC</option>
-    <option value="2">GYD</option>
-    <option value="3">IST</option>
-    <option value="4">SFO</option>
-  </select>
-  <input type="submit" value="Search">
-
+  <%# <%= f.select :passengers, [1, 2, 3, 4] %>
+  <%= f.submit "Search" %>
 <% end %>
+
+<%# <%= form_tag(flights_path, method: "get") do %>
+  <%# <select name=flight[:departure_airport_id], class="form-control"> %>
+    <%# <option value="None">-Select-</option> %>
+    <%# <option value="1">NYC</option> %>
+    <%# <option value="2">GYD</option> %>
+    <%# <option value="3">IST</option> %>
+    <%# <option value="4">SFO</option> %>
+  <%# </select> %>
+  <%# <input type="submit" value="Search"> %>
+
+<%# <% end %> 
 
 <p>
   <% if @chosen_flights %> 
