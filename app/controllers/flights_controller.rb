@@ -8,7 +8,8 @@ class FlightsController < ApplicationController
     @flights = Flight.all
     if params[:flight]
       # @chosen_flights = Flight.where("departure_airport_id = ?", flight_params[:departure_airport_id])
-      @chosen_flights = Flight.where("departure_airport_id = ? AND arrival_airport_id = ?", flight_params[:departure_airport_id], flight_params[:arrival_airport_id])
+      # @chosen_flights = Flight.where("departure_airport_id = ? AND arrival_airport_id = ?", flight_params[:departure_airport_id], flight_params[:arrival_airport_id])
+      @chosen_flights = Flight.search(params[:flight])
     end
   end
 

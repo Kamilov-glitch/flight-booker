@@ -8,9 +8,9 @@ class Flight < ApplicationRecord
 
     def self.search(search)
         if search
-            flights = Flight.all
-            flights = Flight.where(departure_airport_id: search[:":departure_airport_id"])
-            flights = Flight.where(arrival_airport_id: search[:":arrival_airport_id"])
+            flights = self.all
+            flights = flights.where("departure_airport_id = ?", search[:departure_airport_id]) unless search[:departure_airport_id].blank?
+            flights = flights.where("arrival_airport_id = ?", search[:arrival_airport_id]) unless search[:arrival_airport_id].blank?
             # flights = Flight.where(date: search[:":date"][","])
             return flights
         else
